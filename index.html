@@ -1,0 +1,594 @@
+<!doctype html>
+<html lang="es" id="htmlRoot">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quelle langue enseigner ? / ¿Qué lengua enseñar?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#163A5C;
+    --navy-deep:#0E2A44;
+    --blue:#4C85B0;
+    --blue-mid:#7FA8C9;
+    --blue-pale:#C7DCEA;
+    --bg:#EEF3F7;
+    --red:#9E2A42;
+    --red-pale:#F3E1E5;
+    --blue-pale-tag:#E3EDF4;
+    --white:#FFFFFF;
+    --maxw:1120px;
+  }
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; }
+  body{
+    background:var(--bg);
+    color:var(--navy);
+    font-family:'Inter', sans-serif;
+    font-weight:400;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{ font-family:'Poppins', sans-serif; margin:0; }
+  p{ margin:0; }
+  a{ color:inherit; }
+  button{ font-family:'Inter', sans-serif; cursor:pointer; }
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 28px; }
+  .rule{ width:36px; height:3px; background:var(--blue); border-radius:2px; margin-bottom:12px; }
+  .rule.red{ background:var(--red); }
+
+  /* ---------- top bar ---------- */
+  .topbar{
+    position:sticky; top:0; z-index:50;
+    background:var(--bg);
+    border-bottom:2px solid var(--navy);
+  }
+  .topbar-inner{
+    max-width:var(--maxw); margin:0 auto; padding:16px 28px;
+    display:flex; align-items:center; justify-content:space-between; gap:18px;
+  }
+  .mark{ display:flex; align-items:baseline; gap:10px; }
+  .mark .parl{ font-family:'Poppins',sans-serif; font-weight:800; font-size:22px; color:var(--red); }
+  .mark .tag{ font-size:12.5px; color:var(--navy); opacity:0.75; }
+  nav.topnav{ display:flex; gap:26px; }
+  nav.topnav a{
+    font-size:14.5px; font-weight:700; text-decoration:none; color:var(--navy);
+    padding:6px 2px; border-bottom:2px solid transparent;
+  }
+  nav.topnav a:hover{ border-bottom-color:var(--red); }
+  .langtoggle{ display:flex; border:2px solid var(--navy); border-radius:7px; overflow:hidden; flex-shrink:0; }
+  .langtoggle button{
+    border:none; background:transparent; color:var(--navy); font-weight:800; font-size:12.5px;
+    padding:7px 13px; letter-spacing:0.5px;
+  }
+  .langtoggle button.active{ background:var(--navy); color:#fff; }
+
+  /* ---------- hero ---------- */
+  .hero{ position:relative; overflow:hidden; background:var(--bg); padding-top:40px; }
+  .ring{ position:absolute; border-radius:50%; pointer-events:none; }
+  .ring1{ width:380px; height:380px; right:-130px; top:-90px; border:2px solid rgba(76,133,176,0.4); }
+  .ring2{ width:190px; height:190px; right:150px; top:170px; border:2px solid rgba(158,42,66,0.35); }
+  .ring3{ width:90px; height:90px; right:60px; top:360px; background:var(--blue-pale); opacity:0.7; }
+  .hero-inner{ position:relative; z-index:2; padding-bottom:160px; }
+  .hero-logos{ display:flex; margin-bottom:54px; }
+  .hero-logos img{ width:100%; max-width:760px; height:auto; display:block; }
+  .hero-main{ max-width:640px; }
+  .eyebrow{ font-family:'Poppins',sans-serif; font-weight:700; font-size:18px; color:var(--blue); }
+  .hero h1{ font-size:58px; font-weight:800; line-height:1.07; color:var(--navy); letter-spacing:-0.5px; margin-top:8px; }
+  .hero .sub{ font-size:20px; font-weight:700; color:var(--navy); opacity:0.72; margin-top:16px; max-width:540px; line-height:1.42; }
+  .hero-facts{ margin-top:36px; }
+  .fact-date{ font-family:'Poppins',sans-serif; font-weight:800; font-size:25px; color:var(--blue); }
+  .fact-line{ font-size:15.5px; color:var(--navy); margin-top:5px; font-weight:500; }
+  .hero-organizers{ margin-top:24px; font-size:13.5px; color:#577089; }
+  .hero-organizers b{ color:var(--navy); font-weight:700; }
+  .hero-mark{ margin-top:46px; display:flex; align-items:baseline; gap:11px; }
+  .hero-mark .parl{ font-family:'Poppins',sans-serif; font-weight:800; font-size:27px; color:var(--red); }
+  .hero-mark .tagline{ font-size:13px; color:var(--navy); opacity:0.68; }
+  .hero-wave{ position:absolute; left:0; right:0; bottom:-2px; width:100%; height:200px; z-index:1; }
+
+  /* ---------- sections ---------- */
+  section{ padding:70px 28px; scroll-margin-top:72px; }
+  section.alt{ background:#fff; }
+  .section-head{ max-width:720px; margin:0 auto 44px; text-align:left; }
+  .section-head h2{ font-size:30px; font-weight:800; color:var(--navy); margin-top:6px; }
+  .section-head p{ margin-top:12px; font-size:15.5px; color:#3c5872; line-height:1.55; }
+
+  /* ---------- program timeline ---------- */
+  .timeline{ max-width:860px; margin:0 auto; position:relative; }
+  .timeline::before{
+    content:""; position:absolute; left:19px; top:6px; bottom:6px; width:2px; background:var(--blue-pale);
+  }
+  .t-item{ position:relative; padding-left:56px; margin-bottom:30px; }
+  .t-dot{
+    position:absolute; left:11px; top:6px; width:18px; height:18px; border-radius:50%;
+    background:var(--blue); border:3px solid var(--bg);
+  }
+  .t-item.break .t-dot{ background:var(--blue-mid); }
+  .t-time{
+    display:inline-block; font-family:'Poppins',sans-serif; font-weight:700; font-size:14.5px;
+    color:var(--navy); background:var(--blue-pale-tag); padding:6px 14px; border-radius:0; margin-bottom:10px;
+  }
+  .t-time.dark{ background:var(--navy); color:#fff; }
+  .t-time.accent{ background:var(--red); color:#fff; }
+  .t-item.break{ opacity:0.92; }
+  .t-item.break .t-time{ background:transparent; color:var(--blue); padding-left:0; }
+  .t-item.break .t-label{ font-weight:700; font-size:15.5px; color:var(--navy); }
+  .t-item.break .t-label .ico{
+    display:inline-flex; align-items:center; justify-content:center; width:24px; height:24px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:12px; margin-right:8px; vertical-align:middle;
+  }
+  .talk-card{
+    background:#fff; border-top:4px solid var(--blue); border-radius:0;
+    padding:26px 26px 24px; box-shadow:0 20px 44px -26px rgba(22,58,92,0.45);
+  }
+  .talk-card.minor{ border-top-color:var(--red); }
+  .talk-speaker{ font-size:18.5px; font-weight:700; color:var(--navy); }
+  .talk-inst{ font-size:13.5px; color:#577089; margin-top:2px; }
+  .langtag{ display:inline-flex; align-items:center; gap:8px; font-size:12.5px; font-weight:700; margin-top:12px; }
+  .langtag.major{ color:var(--blue); }
+  .langtag.minor{ color:var(--red); }
+  .talk-title{ font-size:17px; font-weight:700; color:var(--navy-deep); margin-top:15px; line-height:1.4; }
+  details.more{ margin-top:15px; }
+  details.more + details.more{ margin-top:9px; }
+  details.more summary{
+    list-style:none; cursor:pointer; font-size:13.5px; font-weight:700; color:var(--blue);
+    display:inline-flex; align-items:center; gap:7px; padding:4px 0;
+  }
+  details.more summary::-webkit-details-marker{ display:none; }
+  details.more summary::before{ content:"▸"; font-size:10px; display:inline-block; transition:transform .15s ease; }
+  details.more[open] summary::before{ transform:rotate(90deg); }
+  details.more .body{
+    font-size:14.5px; color:#2d4a63; line-height:1.62; margin-top:11px; padding-top:11px; border-top:1px dashed rgba(22,58,92,0.18);
+  }
+
+  /* ---------- slides section ---------- */
+  .slides-note{
+    border-left:3px solid var(--blue); background:#fff; padding:17px 22px;
+    font-size:14px; color:var(--navy); max-width:720px; margin:0 auto 36px; line-height:1.55;
+  }
+  .slides-grid{ max-width:900px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  @media (max-width:720px){ .slides-grid{ grid-template-columns:1fr; } }
+  .slide-card{
+    background:#fff; border-left:4px solid var(--navy); border-radius:0; padding:20px 22px;
+    box-shadow:0 16px 34px -24px rgba(22,58,92,0.4); display:flex; flex-direction:column; gap:10px;
+  }
+  .slide-card .time{ font-size:12.5px; font-weight:700; color:var(--blue); }
+  .slide-card .who{ font-size:16px; font-weight:700; color:var(--navy); }
+  .slide-card .what{ font-size:13.5px; color:#577089; line-height:1.4; }
+  .slide-langs{ margin-top:auto; display:flex; gap:10px; }
+  .slide-lang-btn{
+    flex:1; display:flex; flex-direction:column; align-items:center; gap:4px;
+    border-radius:0; padding:10px 8px; background:transparent; border:1.5px dashed #9fb0bf; opacity:0.85;
+  }
+  .slide-lang-btn .code{ font-family:'Poppins',sans-serif; font-weight:800; font-size:13px; color:var(--navy); letter-spacing:0.5px; }
+  .slide-lang-btn .status{ display:flex; align-items:center; gap:5px; font-size:10.5px; font-weight:600; color:#7c8a96; }
+  .slide-lang-btn .soon{ display:inline-block; width:6px; height:6px; border-radius:50%; background:var(--red); }
+  a.slide-lang-btn.ready{
+    text-decoration:none; border:1.5px solid var(--blue); background:#fff; opacity:1; cursor:pointer;
+    transition:background .15s ease, border-color .15s ease, transform .15s ease;
+  }
+  a.slide-lang-btn.ready.orig{ border-color:var(--navy); }
+  a.slide-lang-btn.ready .status{ color:#577089; }
+  a.slide-lang-btn.ready .pdf-ico{ font-size:9px; font-weight:800; color:#fff; background:var(--red); padding:1px 4px; letter-spacing:0.3px; }
+  a.slide-lang-btn.ready .open{ font-size:11.5px; font-weight:700; color:var(--blue); }
+  a.slide-lang-btn.ready:hover, a.slide-lang-btn.ready:focus-visible{ background:var(--navy); border-color:var(--navy); transform:translateY(-1px); outline:none; }
+  a.slide-lang-btn.ready:hover .code, a.slide-lang-btn.ready:hover .open, a.slide-lang-btn.ready:hover .status,
+  a.slide-lang-btn.ready:focus-visible .code, a.slide-lang-btn.ready:focus-visible .open, a.slide-lang-btn.ready:focus-visible .status{ color:#fff; }
+
+  /* ---------- practical info ---------- */
+  .info-grid{ max-width:900px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  @media (max-width:720px){ .info-grid{ grid-template-columns:1fr; } }
+  .info-card{ background:#fff; border-top:3px solid var(--blue); border-radius:0; padding:24px 24px; box-shadow:0 16px 34px -26px rgba(22,58,92,0.35); }
+  .info-card h3{ font-size:15.5px; font-weight:700; color:var(--navy); }
+  .info-card p{ font-size:14px; color:#3c5872; margin-top:9px; line-height:1.55; }
+  .tbc{ display:inline-block; font-size:10.5px; font-weight:700; color:var(--red); background:var(--red-pale); padding:3px 9px; border-radius:6px; margin-left:8px; vertical-align:middle; }
+
+  /* ---------- footer ---------- */
+  footer{ background:var(--navy-deep); color:#cfe0ec; padding:46px 28px 30px; }
+  .footer-inner{ max-width:var(--maxw); margin:0 auto; display:flex; flex-wrap:wrap; justify-content:space-between; gap:30px; }
+  .footer-inner .fcol{ max-width:360px; }
+  .footer-inner .parl{ font-family:'Poppins',sans-serif; font-weight:800; font-size:20px; color:#e07a8f; }
+  .footer-inner p{ font-size:13px; color:#9fb6c7; margin-top:9px; line-height:1.55; }
+  .foot-logos{ background:#fff; border-radius:10px; padding:14px 18px; max-width:420px; display:flex; align-items:center; }
+  .foot-logos img{ width:100%; height:auto; display:block; }
+  .foot-bottom{ max-width:var(--maxw); margin:30px auto 0; padding-top:18px; border-top:1px solid rgba(255,255,255,0.1); font-size:12px; color:#7e96a8; }
+
+  .proposal-banner{
+    background:#FFF4D6; color:#6b4e00; font-size:13px; font-weight:700; text-align:center;
+    padding:9px 16px; border-bottom:2px solid #e0bb3f;
+  }
+
+  @media (max-width:760px){
+    .topbar-inner{ flex-wrap:wrap; row-gap:10px; padding:14px 18px; }
+    .mark .tag{ display:none; }
+    nav.topnav{ order:3; width:100%; overflow-x:auto; gap:18px; padding-bottom:2px; -webkit-overflow-scrolling:touch; }
+    nav.topnav a{ white-space:nowrap; }
+    .hero h1{ font-size:36px; }
+    .hero .sub{ font-size:17px; }
+    .hero-inner{ padding-bottom:120px; }
+    .wrap{ padding:0 18px; }
+    section{ padding:48px 18px; }
+    .hero-logos{ margin-bottom:38px; }
+  }
+</style>
+</head>
+<body>
+<div id="app"></div>
+
+<script>
+const PAGE = {};
+
+PAGE.es = `
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="mark"><span class="parl">PaRL</span><span class="tag">Patrimoine Régional Linguistique</span></div>
+    <nav class="topnav">
+      <a href="#programa">Programa</a>
+      <a href="#diapositivas">Diapositivas</a>
+    </nav>
+    <div class="langtoggle">
+      <button class="active" onclick="setLang('es')">ES</button>
+      <button onclick="setLang('fr')">FR</button>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="ring ring1"></div><div class="ring ring2"></div><div class="ring ring3"></div>
+  <div class="hero-inner wrap">
+    <div class="hero-logos"><img src="logos.png" alt="Socios del proyecto PaRL: iker, FoReLLIS, CLLE, MSH Bordeaux, Región Nueva Aquitania, Universidad Bordeaux Montaigne"></div>
+    <div class="hero-main">
+      <div class="eyebrow">Seminario</div>
+      <h1>¿Qué lengua enseñar?</h1>
+      <p class="sub">Perspectivas sobre la variación en la enseñanza de lenguas</p>
+      <div class="hero-facts">
+        <div class="fact-date">4 de noviembre de 2026</div>
+        <div class="fact-line">09:00 - 13:15 h &middot; Sala Jean Borde, MSHBx</div>
+        <div class="fact-line">Universidad Bordeaux Montaigne &middot; formato híbrido (presencial y Zoom)</div>
+      </div>
+      <div class="hero-organizers">Organización: <b>Nicolas Guilliot</b> y <b>Paula Alexandra Montenegro</b></div>
+      <div class="hero-mark"><span class="parl">PaRL</span><span class="tagline">Patrimoine Régional Linguistique</span></div>
+    </div>
+  </div>
+  <svg class="hero-wave" viewBox="0 0 1440 300" preserveAspectRatio="none">
+    <path d="M0,160 C260,90 560,210 900,130 C1150,70 1300,150 1440,110 L1440,300 L0,300 Z" fill="var(--blue-pale)" opacity="0.55"/>
+    <path d="M0,210 C300,150 620,260 960,180 C1180,130 1300,200 1440,170 L1440,300 L0,300 Z" fill="var(--blue)" opacity="0.45"/>
+    <path d="M0,255 C280,215 600,290 960,235 C1180,200 1300,250 1440,225 L1440,300 L0,300 Z" fill="var(--navy)"/>
+  </svg>
+</section>
+
+<section id="programa">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="rule"></div>
+      <div class="eyebrow">Programa</div>
+      <h2>Programa de la jornada</h2>
+      <p>Cuatro intervenciones agrupadas por región geográfica de contacto - español y catalán, por un lado; francés y lenguas regionales de Nueva Aquitania, por otro - seguidas de una discusión general. Cada intervención indica si la lengua tratada es mayorizada o minorizada.</p>
+    </div>
+    <div class="timeline">
+
+      <div class="t-item break"><div class="t-dot"></div><div class="t-time">09:00 - 09:30</div><div class="t-label">Recepción de las personas participantes</div></div>
+      <div class="t-item break"><div class="t-dot"></div><div class="t-time">09:30 - 09:45</div><div class="t-label">Apertura del seminario</div></div>
+
+      <div class="t-item">
+        <div class="t-dot"></div>
+        <div class="t-time accent">09:45 - 10:15</div>
+        <div class="talk-card major">
+          <div class="talk-speaker">María Antonieta Andión Herrero</div>
+          <div class="talk-inst">UNED, España - intervención a distancia</div>
+          <div class="langtag major">Español, lengua mayorizada</div>
+          <div class="talk-title">La relación entre variedad y estándar en la enseñanza del español como lengua extranjera: (re)conocimiento, inserción curricular y actitudes</div>
+          <details class="more"><summary>Ver resumen</summary><div class="body">El consenso alcanzado actualmente entre los hispanohablantes en torno al reconocimiento del español como lengua plurilectal, dotada de varios centros normativos, favorece un enfoque ecolingüístico del modelo de enseñanza de la lengua a hablantes nativos y no nativos, enfoque con el que autoridades, docentes, estudiantes, investigadores e investigadoras, editoriales y empresas deberían sentirse comprometidos. Esto supone adoptar un modelo de lengua flexible, que supere las posturas lectocéntricas y parta de consideraciones adaptadas a las distintas condiciones, geografías, circunstancias y expectativas de quienes enseñan y aprenden español, dentro y fuera de las comunidades hispanohablantes.</div></details>
+          <details class="more"><summary>Ver biografía</summary><div class="body">María Antonieta Andión Herrero es licenciada en Filología Hispánica por la Universidad de La Habana (Cuba) y doctora en Filología Hispánica por la Universidad de Alcalá (España). Trabajó como investigadora de la Academia de Ciencias de Cuba y desde 1999 es profesora titular del departamento de Lengua española y Lingüística general de la Universidad Nacional de Educación a Distancia (UNED, España). Ha desempeñado varios cargos institucionales y de dirección y coordinación de cursos de formación, expertos y másteres en la UNED y en el extranjero. Es autora de materiales didácticos de enseñanza del español como lengua materna y lengua extranjera, y de artículos y libros en el área de la Lingüística aplicada a la enseñanza de lenguas y de la Dialectología. Ha participado en proyectos de la Academia de Ciencias de Cuba, la Real Academia de la Lengua Española, el Instituto Cervantes y el Ministerio de Educación, Formación profesional y Deportes (España), y ha sido investigadora principal de proyectos de excelencia del Ministerio de Educación de España. Ha sido y es asesora científica del Instituto Cervantes.</div></details>
+        </div>
+      </div>
+
+      <div class="t-item">
+        <div class="t-dot"></div>
+        <div class="t-time dark">10:15 - 10:45</div>
+        <div class="talk-card minor">
+          <div class="talk-speaker">Ivan Solivellas</div>
+          <div class="talk-inst">Universitat de les Illes Balears</div>
+          <div class="langtag minor">Catalán, lengua minorizada</div>
+          <div class="talk-title">Estandarizar para existir: una mirada glotopolítica sobre el concepto de estándar</div>
+          <details class="more"><summary>Ver resumen</summary><div class="body">La estandarización es un proceso de planificación lingüística que da lugar a un modelo de lengua supradialectal que facilita la eficacia comunicativa entre variedades y que, al mismo tiempo, define la lengua misma (Bibiloni, 2007). El estándar depende, por tanto, más de la política que de la lengua. Además, el establecimiento de este modelo de lengua está intrínsecamente ligado a la aparición de la cultura del estándar (Milroy, 2001) y a las ideologías que suscita, entre ellas la distinción entre correcto e incorrecto, o entre estándar y dialectal, que responde siempre a dinámicas basadas en el prestigio de ciertas formas en detrimento de otras, prestigio que depende de cuestiones extralingüísticas. Por ello, algunos autores han criticado la noción de lengua estándar y han cuestionado su utilidad (Gal, 2006; Duchêne &amp; Heller, 2012), como recuerda Pradilla (2024). Ahora bien, al cuestionar la noción de estándar y, por extensión, la estandarización, conviene preguntarse qué implica esto. Al fin y al cabo, defender el estándar no tiene el mismo sentido en el marco de lenguas hegemónicas, como el español o el francés, que en el de lenguas minorizadas, como ocurre con el catalán, el occitano o el euskera.<br><br>En efecto, la estandarización constituye un elemento clave de los procesos de normalización o revitalización lingüística (Pradilla, 2024). En esta contribución me propongo, por tanto, reflexionar sobre la noción de estándar y sus implicaciones ideológicas desde una perspectiva glotopolítica, teniendo en cuenta los distintos factores que afectan a ecosistemas comunicativos diversos.</div></details>
+          <details class="more"><summary>Ver biografía</summary><div class="body">Ivan Solivellas es doctor en Traducción y Ciencias del Lenguaje por la Universitat Pompeu Fabra (2021) y profesor titular laboral de la Universitat de les Illes Balears, donde imparte asignaturas relacionadas con la planificación lingüística y la gestión del multilingüismo en la enseñanza. Anteriormente, también impartió clase en la Universitat de Barcelona y en la Universitat Pompeu Fabra. Su investigación se centra en la glotopolítica y en los estudios críticos del discurso, con un interés especial por las ideologías lingüísticas, las representaciones de la diversidad lingüística y la intersección entre discurso, política y sociedad.</div></details>
+        </div>
+      </div>
+
+      <div class="t-item break"><div class="t-dot"></div><div class="t-time">10:45 - 11:15</div><div class="t-label"><span class="ico">&#9749;</span>Pausa café</div></div>
+
+      <div class="t-item">
+        <div class="t-dot"></div>
+        <div class="t-time dark">11:15 - 11:45</div>
+        <div class="talk-card major">
+          <div class="talk-speaker">Sylvain Medzogo</div>
+          <div class="talk-inst">Universidad de Ginebra</div>
+          <div class="langtag major">Francés, lengua mayorizada</div>
+          <div class="talk-title">Un francés, muchos franceses de África: la variación diatópica como riqueza y no como desviación</div>
+          <details class="more"><summary>Ver resumen</summary><div class="body">La variación diatópica del francés en África designa el conjunto de diferenciaciones lingüísticas vinculadas al espacio geográfico, que hacen que el francés hablado y escrito en el continente africano ya no constituya una realidad uniforme, sino una pluralidad de variedades regionales, cada una moldeada por su entorno sociolingüístico, histórico y cultural. Nacida del contacto prolongado entre el francés, las lenguas importadas y las lenguas africanas (ewondo, eton, bulu, wólof, bambara, lingala, suajili, árabe, etc.), de la «herencia» colonial, de la urbanización y de la movilidad de las poblaciones, esta variación se manifiesta en todos los niveles de la lengua (fonético, léxico, sintáctico, semántico y pragmático). Produce usos específicos como <i>essencerie</i> en Senegal, <i>boucantier</i> en Costa de Marfil o <i>ambiancer</i> en Camerún, al tiempo que dibuja grandes áreas regionales (África Occidental, África Central, Magreb, Océano Índico) con particularismos bien identificables. Lejos de representar una simple desviación respecto a una norma metropolitana, esta variación diatópica constituye hoy un fenómeno lingüístico de pleno derecho, revelador de la vitalidad del francés en el continente y de su capacidad para arraigarse en contextos socioculturales diversos; invita, por tanto, a la investigación en lenguas y a la Francofonía a reconocer la existencia de normas endógenas legítimas, a repensar la pedagogía del francés adaptándola a las realidades locales, y a considerar el francés africano como un espacio de pluralidad normada o compartida donde se negocian identidades, poderes y creatividad lingüística.</div></details>
+          <details class="more"><summary>Ver biografía</summary><div class="body">Sylvain Medzogo es doctor en Ciencias del Lenguaje y Didáctica (Universidad de Ginebra), especialista en francofonías plurales y en fonías en contextos multilingües. Antiguo alumno de la École Normale, formador de formadores en letras bilingües (francés e inglés) en Camerún y profesor de escuelas de madurez en Suiza (francés e inglés), es miembro de varias sociedades científicas, además de alumni y colaborador externo de la Universidad de Ginebra.</div></details>
+        </div>
+      </div>
+
+      <div class="t-item">
+        <div class="t-dot"></div>
+        <div class="t-time dark">11:45 - 12:15</div>
+        <div class="talk-card minor">
+          <div class="talk-speaker">Valeria Villa-Pérez &amp; Paula Alexandra Montenegro</div>
+          <div class="talk-inst">Universidad Bordeaux Montaigne, CLLE</div>
+          <div class="langtag minor">Occitano y euskera, lenguas minorizadas</div>
+          <div class="talk-title">Cuestionar el lugar de la variación: análisis de testimonios de los docentes de lenguas regionales de Nueva Aquitania</div>
+          <details class="more"><summary>Ver resumen</summary><div class="body">A partir de entrevistas realizadas a docentes de occitano y de euskera en Nueva Aquitania, esta contribución interroga el lugar de la variación lingüística en las prácticas de transmisión de estas lenguas regionales. Pone en evidencia trayectorias sociolingüísticas contrastadas entre neohablantes y hablantes tradicionales, una tendencia compartida a privilegiar una variedad de referencia en el aula, y arbitrajes vividos más como decisiones pragmáticas que como elecciones explícitas de política lingüística, entre la seguridad de los aprendizajes y la preservación de la diversidad dialectal.</div></details>
+        </div>
+      </div>
+
+      <div class="t-item">
+        <div class="t-dot"></div>
+        <div class="t-time dark">12:15 - 13:15</div>
+        <div class="talk-card">
+          <div class="talk-speaker">Discusión general</div>
+          <div class="talk-title" style="margin-top:8px;">Variación, norma y formación de los docentes</div>
+          <details class="more"><summary>Ver descripción</summary><div class="body">Un espacio de intercambio para cruzar las miradas de investigadores e investigadoras, docentes y profesionales de la educación, en torno a los desafíos de la variación lingüística, la norma y la formación de los docentes. Esta discusión será la ocasión de compartir experiencias, esbozar líneas de acción y abrir nuevas perspectivas para la enseñanza de lenguas.</div></details>
+        </div>
+      </div>
+
+      <div class="t-item break"><div class="t-dot"></div><div class="t-time">13:15 h</div><div class="t-label">Clausura - palabras de cierre y agradecimientos</div></div>
+
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="diapositivas">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="rule"></div>
+      <div class="eyebrow">Materiales</div>
+      <h2>Acceder a las diapositivas</h2>
+    </div>
+    <div class="slides-note">Las diapositivas de cada ponencia están disponibles en español y en francés. Elija el idioma en el que quiere consultarlas: la etiqueta indica si se trata de la versión original o de la traducción. Los PDF se abren en una pestaña nueva, desde donde también pueden descargarse.</div>
+    <div class="slides-grid">
+      <div class="slide-card">
+        <div class="time">09:45 - 10:15</div>
+        <div class="who">María Antonieta Andión Herrero</div>
+        <div class="what">La relación entre variedad y estándar en la enseñanza del español LE</div>
+        <div class="slide-langs">
+          <a class="slide-lang-btn ready orig" href="slides/andion-herrero_ES.pdf" target="_blank" rel="noopener" aria-label="Ver PDF (ES, original)"><span class="code">ES</span><span class="status"><span class="pdf-ico">PDF</span>original</span><span class="open">Ver PDF ↗</span></a>
+          <a class="slide-lang-btn ready" href="slides/andion-herrero_FR.pdf" target="_blank" rel="noopener" aria-label="Ver PDF (FR, traducción)"><span class="code">FR</span><span class="status"><span class="pdf-ico">PDF</span>traducción</span><span class="open">Ver PDF ↗</span></a>
+        </div>
+      </div>
+      <div class="slide-card">
+        <div class="time">10:15 - 10:45</div>
+        <div class="who">Ivan Solivellas</div>
+        <div class="what">Estandarizar para existir</div>
+        <div class="slide-langs">
+          <a class="slide-lang-btn ready orig" href="slides/solivellas_ES.pdf" target="_blank" rel="noopener" aria-label="Ver PDF (ES, original)"><span class="code">ES</span><span class="status"><span class="pdf-ico">PDF</span>original</span><span class="open">Ver PDF ↗</span></a>
+          <a class="slide-lang-btn ready" href="slides/solivellas_FR.pdf" target="_blank" rel="noopener" aria-label="Ver PDF (FR, traducción)"><span class="code">FR</span><span class="status"><span class="pdf-ico">PDF</span>traducción</span><span class="open">Ver PDF ↗</span></a>
+        </div>
+      </div>
+      <div class="slide-card">
+        <div class="time">11:15 - 11:45</div>
+        <div class="who">Sylvain Medzogo</div>
+        <div class="what">Un francés, muchos franceses de África</div>
+        <div class="slide-langs">
+          <a class="slide-lang-btn ready" href="slides/medzogo_ES.pdf" target="_blank" rel="noopener" aria-label="Ver PDF (ES, traducción)"><span class="code">ES</span><span class="status"><span class="pdf-ico">PDF</span>traducción</span><span class="open">Ver PDF ↗</span></a>
+          <a class="slide-lang-btn ready orig" href="slides/medzogo_FR.pdf" target="_blank" rel="noopener" aria-label="Ver PDF (FR, original)"><span class="code">FR</span><span class="status"><span class="pdf-ico">PDF</span>original</span><span class="open">Ver PDF ↗</span></a>
+        </div>
+      </div>
+      <div class="slide-card">
+        <div class="time">11:45 - 12:15</div>
+        <div class="who">Valeria Villa-Pérez &amp; Paula Alexandra Montenegro</div>
+        <div class="what">Cuestionar el lugar de la variación</div>
+        <div class="slide-langs">
+          <a class="slide-lang-btn ready" href="slides/villa-perez-montenegro_ES.pdf" target="_blank" rel="noopener" aria-label="Ver PDF (ES, traducción)"><span class="code">ES</span><span class="status"><span class="pdf-ico">PDF</span>traducción</span><span class="open">Ver PDF ↗</span></a>
+          <a class="slide-lang-btn ready orig" href="slides/villa-perez-montenegro_FR.pdf" target="_blank" rel="noopener" aria-label="Ver PDF (FR, original)"><span class="code">FR</span><span class="status"><span class="pdf-ico">PDF</span>original</span><span class="open">Ver PDF ↗</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="fcol">
+      <div class="parl">PaRL</div>
+      <p>Patrimoine Régional Linguistique - proyecto de investigación de la Universidad Bordeaux Montaigne. Seminario organizado por Nicolas Guilliot y Paula Alexandra Montenegro.</p>
+    </div>
+    <div class="foot-logos"><img src="logos.png" alt="Socios del proyecto PaRL"></div>
+  </div>
+  <div class="foot-bottom wrap">4 de noviembre de 2026 · Sala Jean Borde, MSHBx · Universidad Bordeaux Montaigne</div>
+</footer>
+`;
+
+PAGE.fr = `
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="mark"><span class="parl">PaRL</span><span class="tag">Patrimoine Régional Linguistique</span></div>
+    <nav class="topnav">
+      <a href="#programme">Programme</a>
+      <a href="#diapositives">Diapositives</a>
+    </nav>
+    <div class="langtoggle">
+      <button onclick="setLang('es')">ES</button>
+      <button class="active" onclick="setLang('fr')">FR</button>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="ring ring1"></div><div class="ring ring2"></div><div class="ring ring3"></div>
+  <div class="hero-inner wrap">
+    <div class="hero-logos"><img src="logos.png" alt="Partenaires du projet PaRL : iker, FoReLLIS, CLLE, MSH Bordeaux, Région Nouvelle-Aquitaine, Université Bordeaux Montaigne"></div>
+    <div class="hero-main">
+      <div class="eyebrow">Séminaire</div>
+      <h1>Quelle langue enseigner ?</h1>
+      <p class="sub">Perspectives sur la variation dans l’enseignement des langues</p>
+      <div class="hero-facts">
+        <div class="fact-date">4 novembre 2026</div>
+        <div class="fact-line">09h00 - 13h15 &middot; Salle Jean Borde, MSHBx</div>
+        <div class="fact-line">Université Bordeaux Montaigne &middot; format hybride (présentiel et Zoom)</div>
+      </div>
+      <div class="hero-organizers">Organisation : <b>Nicolas Guilliot</b> et <b>Paula Alexandra Montenegro</b></div>
+      <div class="hero-mark"><span class="parl">PaRL</span><span class="tagline">Patrimoine Régional Linguistique</span></div>
+    </div>
+  </div>
+  <svg class="hero-wave" viewBox="0 0 1440 300" preserveAspectRatio="none">
+    <path d="M0,160 C260,90 560,210 900,130 C1150,70 1300,150 1440,110 L1440,300 L0,300 Z" fill="var(--blue-pale)" opacity="0.55"/>
+    <path d="M0,210 C300,150 620,260 960,180 C1180,130 1300,200 1440,170 L1440,300 L0,300 Z" fill="var(--blue)" opacity="0.45"/>
+    <path d="M0,255 C280,215 600,290 960,235 C1180,200 1300,250 1440,225 L1440,300 L0,300 Z" fill="var(--navy)"/>
+  </svg>
+</section>
+
+<section id="programme">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="rule"></div>
+      <div class="eyebrow">Programme</div>
+      <h2>Programme de la journée</h2>
+      <p>Quatre interventions regroupées par région géographique de contact - espagnol et catalan, d’une part ; français et langues régionales de Nouvelle-Aquitaine, d’autre part - suivies d’une discussion générale. Chaque intervention précise si la langue traitée est majorisée ou minorisée.</p>
+    </div>
+    <div class="timeline">
+
+      <div class="t-item break"><div class="t-dot"></div><div class="t-time">09h00 - 09h30</div><div class="t-label">Accueil des participant·e·s</div></div>
+      <div class="t-item break"><div class="t-dot"></div><div class="t-time">09h30 - 09h45</div><div class="t-label">Ouverture du séminaire</div></div>
+
+      <div class="t-item">
+        <div class="t-dot"></div>
+        <div class="t-time accent">09h45 - 10h15</div>
+        <div class="talk-card major">
+          <div class="talk-speaker">María Antonieta Andión Herrero</div>
+          <div class="talk-inst">UNED, Espagne - intervention à distance</div>
+          <div class="langtag major">Espagnol, langue majorisée</div>
+          <div class="talk-title">Le rapport entre variété et standard dans l’enseignement de l’espagnol langue étrangère : (re)connaissance, insertion curriculaire et attitudes</div>
+          <details class="more"><summary>Voir le résumé</summary><div class="body">Le consensus actuellement atteint parmi les hispanophones quant à la reconnaissance de l’espagnol comme langue plurilectale, dotée de plusieurs centres normatifs, favorise une approche écolinguistique du modèle d’enseignement de la langue aux locuteurs natifs et non natifs, approche à laquelle autorités, enseignant·e·s, étudiant·e·s, chercheur·euse·s, maisons d’édition et entreprises devraient se sentir engagés. Cela suppose d’adopter un modèle de langue flexible, qui dépasse les positions lectocentriques et parte de considérations adaptées aux différentes conditions, géographies, circonstances et attentes de celles et ceux qui enseignent et apprennent l’espagnol, au sein comme en dehors des communautés hispanophones.</div></details>
+          <details class="more"><summary>Voir la biographie</summary><div class="body">María Antonieta Andión Herrero a fait des études en Philologie hispanique à l’Université de La Havane (Cuba) et est docteure en Philologie hispanique de l’Université d’Alcalá (Espagne). Depuis 1999, elle est professeure titulaire au département de Langue espagnole et Linguistique générale de l’UNED. Elle est autrice de matériels pédagogiques ainsi que d’articles et d’ouvrages en linguistique appliquée à l’enseignement des langues et en dialectologie. Elle a été chercheuse principale de projets d’excellence du ministère de l’Éducation d’Espagne et est conseillère scientifique de l’Institut Cervantes.</div></details>
+        </div>
+      </div>
+
+      <div class="t-item">
+        <div class="t-dot"></div>
+        <div class="t-time dark">10h15 - 10h45</div>
+        <div class="talk-card minor">
+          <div class="talk-speaker">Ivan Solivellas</div>
+          <div class="talk-inst">Universitat de les Illes Balears</div>
+          <div class="langtag minor">Catalan, langue minorisée</div>
+          <div class="talk-title">Standardiser pour exister : un regard glotopolitique sur le concept de standard</div>
+          <details class="more"><summary>Voir le résumé</summary><div class="body">La standardisation est un processus de planification linguistique qui donne lieu à un modèle de langue supradialectal facilitant l’efficacité communicative entre variétés et qui, du même coup, définit la langue elle-même (Bibiloni, 2007). Le standard relève donc davantage de la politique que de la langue. En outre, l’établissement de ce modèle de langue est intrinsèquement lié à l’émergence de la culture du standard (Milroy, 2001) et aux idéologies qu’elle suscite, parmi lesquelles la distinction entre correct et incorrect, ou entre standard et dialectal, qui répond toujours à des dynamiques fondées sur le prestige de certaines formes au détriment d’autres, lesquelles relèvent de questions extralinguistiques. C’est pourquoi certains auteurs ont critiqué la notion de langue standard et ont remis en question son utilité (Gal, 2006 ; Duchêne &amp; Heller, 2012), comme le rappelle Pradilla (2024). Or, lorsque l’on remet en question la notion de standard et, par extension, la standardisation, il convient de s’interroger sur ce que cela implique. Après tout, défendre le standard n’a pas le même sens dans le cadre de langues hégémoniques, comme l’espagnol ou le français, que dans celui de langues minorisées, comme c’est le cas du catalan, de l’occitan ou du basque.<br><br>De fait, la standardisation constitue un élément clé des processus de normalisation ou de revitalisation linguistiques (Pradilla, 2024). Dans cette contribution, je me propose donc de réfléchir à la notion de standard et à ses implications idéologiques dans une perspective glottopolitique, en tenant compte des différents facteurs qui affectent des écosystèmes communicatifs divers.</div></details>
+          <details class="more"><summary>Voir la biographie</summary><div class="body">Ivan Solivellas est docteur en Traduction et Sciences du langage de l’Università Pompeu Fabra (2021) et maître de conférences à l’Universitat de les Illes Balears, où il enseigne des matières liées à la planification linguistique et à la gestion du multilinguisme dans l’enseignement. Ses recherches portent sur la glottopolitique et les études critiques du discours.</div></details>
+        </div>
+      </div>
+
+      <div class="t-item break"><div class="t-dot"></div><div class="t-time">10h45 - 11h15</div><div class="t-label"><span class="ico">&#9749;</span>Pause-café</div></div>
+
+      <div class="t-item">
+        <div class="t-dot"></div>
+        <div class="t-time dark">11h15 - 11h45</div>
+        <div class="talk-card major">
+          <div class="talk-speaker">Sylvain Medzogo</div>
+          <div class="talk-inst">Université de Genève</div>
+          <div class="langtag major">Français, langue majorisée</div>
+          <div class="talk-title">Un français, des français d’Afrique : la variation diatopique comme richesse et non comme écart</div>
+          <details class="more"><summary>Voir le résumé</summary><div class="body">La variation diatopique du français en Afrique désigne l’ensemble des différenciations linguistiques liées à l’espace géographique, qui font que le français parlé et écrit sur le continent africain ne constitue plus une réalité uniforme mais bien une pluralité de variétés régionales, chacune façonnée par son environnement sociolinguistique, historique et culturel. Née du contact prolongé entre le français, les langues importées et les langues africaines (Ewondo, Eton, Bulu, Wolof, Bambara, Lingala, Swahili, Arabe, etc.), de l’« héritage » colonial, de l’urbanisation et de la mobilité des populations, cette variation se manifeste à tous les niveaux de la langue (phonétique, lexical, syntaxique, sémantique et pragmatique). Elle produit des usages spécifiques tels que <i>essencerie</i> au Sénégal, <i>boucantier</i> en Côte d’Ivoire ou <i>ambiancer</i> au Cameroun, tout en dessinant de grandes aires régionales (Afrique de l’Ouest, Afrique centrale, Maghreb, Océan Indien) aux particularismes bien identifiables. Loin de représenter un simple écart par rapport à une norme métropolitaine, cette variation diatopique constitue aujourd’hui un phénomène linguistique à part entière, révélateur de la vitalité du français sur le continent et de sa capacité à s’enraciner dans des contextes socioculturels divers ; elle invite dès lors la recherche en langues et la Francophonie à reconnaître l’existence de normes endogènes légitimes, à repenser la pédagogie du français en l’adaptant aux réalités locales, et à considérer le français africain comme un espace de pluralité normée ou partagée où se négocient identités, pouvoirs et créativité langagière.</div></details>
+          <details class="more"><summary>Voir la biographie</summary><div class="body">Sylvain II Medzogo est docteur en sciences du langage et didactique (doctorat obtenu à l’Université de Genève), spécialiste des francophonies plurielles et autres phonies en contextes multilingues ; normalien, formateur des formateurs en lettres bilingues (français et anglais) au Cameroun, professeur des écoles de maturité en Suisse (français et anglais) ; membre de plusieurs sociétés savantes. Alumni et collaborateur externe de l’Université de Genève (Suisse).</div></details>
+        </div>
+      </div>
+
+      <div class="t-item">
+        <div class="t-dot"></div>
+        <div class="t-time dark">11h45 - 12h15</div>
+        <div class="talk-card minor">
+          <div class="talk-speaker">Valeria Villa-Pérez &amp; Paula Alexandra Montenegro</div>
+          <div class="talk-inst">Université Bordeaux Montaigne, CLLE</div>
+          <div class="langtag minor">Occitan et basque, langues minorisées</div>
+          <div class="talk-title">Questionner la place de la variation : analyse de témoignages d’enseignant·e·s des langues régionales de Nouvelle-Aquitaine</div>
+          <details class="more"><summary>Voir le résumé</summary><div class="body">À partir d’entretiens menés auprès d’enseignant·e·s d’occitan et de basque en Nouvelle-Aquitaine, cette contribution interroge la place de la variation linguistique dans les pratiques de transmission de ces langues régionales. Elle met en évidence des trajectoires sociolinguistiques contrastées entre néolocuteurs et locuteurs traditionnels, une tendance partagée à privilégier une variété de référence en classe, et des arbitrages, vécus davantage comme des décisions pragmatiques que comme des choix de politique linguistique explicite, entre sécurisation des apprentissages et préservation de la diversité dialectale.</div></details>
+        </div>
+      </div>
+
+      <div class="t-item">
+        <div class="t-dot"></div>
+        <div class="t-time dark">12h15 - 13h15</div>
+        <div class="talk-card">
+          <div class="talk-speaker">Discussion générale</div>
+          <div class="talk-title" style="margin-top:8px;">Variation, norme et formation des enseignant·e·s</div>
+          <details class="more"><summary>Voir la description</summary><div class="body">Un temps d’échange pour croiser les regards entre chercheur·euse·s, enseignant·e·s et professionnel·le·s de l’éducation, autour des enjeux de la variation linguistique, de la norme et de la formation des enseignant·e·s. Cette discussion sera l’occasion de partager des expériences, de dégager des pistes d’action et d’ouvrir de nouvelles perspectives pour l’enseignement des langues.</div></details>
+        </div>
+      </div>
+
+      <div class="t-item break"><div class="t-dot"></div><div class="t-time">13h15</div><div class="t-label">Clôture - mots de conclusion et remerciements</div></div>
+
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="diapositives">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="rule"></div>
+      <div class="eyebrow">Ressources</div>
+      <h2>Accéder aux diapositives</h2>
+    </div>
+    <div class="slides-note">Les diapositives de chaque intervention sont disponibles en espagnol et en français. Choisissez la langue souhaitée : l’étiquette indique s’il s’agit de la version originale ou de la traduction. Les PDF s’ouvrent dans un nouvel onglet, d’où ils peuvent aussi être téléchargés.</div>
+    <div class="slides-grid">
+      <div class="slide-card">
+        <div class="time">09h45 - 10h15</div>
+        <div class="who">María Antonieta Andión Herrero</div>
+        <div class="what">Le rapport entre variété et standard en espagnol LE</div>
+        <div class="slide-langs">
+          <a class="slide-lang-btn ready orig" href="slides/andion-herrero_ES.pdf" target="_blank" rel="noopener" aria-label="Voir le PDF (ES, version originale)"><span class="code">ES</span><span class="status"><span class="pdf-ico">PDF</span>version originale</span><span class="open">Voir le PDF ↗</span></a>
+          <a class="slide-lang-btn ready" href="slides/andion-herrero_FR.pdf" target="_blank" rel="noopener" aria-label="Voir le PDF (FR, traduction)"><span class="code">FR</span><span class="status"><span class="pdf-ico">PDF</span>traduction</span><span class="open">Voir le PDF ↗</span></a>
+        </div>
+      </div>
+      <div class="slide-card">
+        <div class="time">10h15 - 10h45</div>
+        <div class="who">Ivan Solivellas</div>
+        <div class="what">Standardiser pour exister</div>
+        <div class="slide-langs">
+          <a class="slide-lang-btn ready orig" href="slides/solivellas_ES.pdf" target="_blank" rel="noopener" aria-label="Voir le PDF (ES, version originale)"><span class="code">ES</span><span class="status"><span class="pdf-ico">PDF</span>version originale</span><span class="open">Voir le PDF ↗</span></a>
+          <a class="slide-lang-btn ready" href="slides/solivellas_FR.pdf" target="_blank" rel="noopener" aria-label="Voir le PDF (FR, traduction)"><span class="code">FR</span><span class="status"><span class="pdf-ico">PDF</span>traduction</span><span class="open">Voir le PDF ↗</span></a>
+        </div>
+      </div>
+      <div class="slide-card">
+        <div class="time">11h15 - 11h45</div>
+        <div class="who">Sylvain Medzogo</div>
+        <div class="what">Un français, des français d’Afrique</div>
+        <div class="slide-langs">
+          <a class="slide-lang-btn ready" href="slides/medzogo_ES.pdf" target="_blank" rel="noopener" aria-label="Voir le PDF (ES, traduction)"><span class="code">ES</span><span class="status"><span class="pdf-ico">PDF</span>traduction</span><span class="open">Voir le PDF ↗</span></a>
+          <a class="slide-lang-btn ready orig" href="slides/medzogo_FR.pdf" target="_blank" rel="noopener" aria-label="Voir le PDF (FR, version originale)"><span class="code">FR</span><span class="status"><span class="pdf-ico">PDF</span>version originale</span><span class="open">Voir le PDF ↗</span></a>
+        </div>
+      </div>
+      <div class="slide-card">
+        <div class="time">11h45 - 12h15</div>
+        <div class="who">Valeria Villa-Pérez &amp; Paula Alexandra Montenegro</div>
+        <div class="what">Questionner la place de la variation</div>
+        <div class="slide-langs">
+          <a class="slide-lang-btn ready" href="slides/villa-perez-montenegro_ES.pdf" target="_blank" rel="noopener" aria-label="Voir le PDF (ES, traduction)"><span class="code">ES</span><span class="status"><span class="pdf-ico">PDF</span>traduction</span><span class="open">Voir le PDF ↗</span></a>
+          <a class="slide-lang-btn ready orig" href="slides/villa-perez-montenegro_FR.pdf" target="_blank" rel="noopener" aria-label="Voir le PDF (FR, version originale)"><span class="code">FR</span><span class="status"><span class="pdf-ico">PDF</span>version originale</span><span class="open">Voir le PDF ↗</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="fcol">
+      <div class="parl">PaRL</div>
+      <p>Patrimoine Régional Linguistique - projet de recherche de l’Université Bordeaux Montaigne. Séminaire organisé par Nicolas Guilliot et Paula Alexandra Montenegro.</p>
+    </div>
+    <div class="foot-logos"><img src="logos.png" alt="Partenaires du projet PaRL"></div>
+  </div>
+  <div class="foot-bottom wrap">4 novembre 2026 · Salle Jean Borde, MSHBx · Université Bordeaux Montaigne</div>
+</footer>
+`;
+
+function setLang(lang){
+  document.getElementById('app').innerHTML = PAGE[lang];
+  document.getElementById('htmlRoot').setAttribute('lang', lang);
+  window.scrollTo({top:0});
+}
+setLang('es');
+</script>
+</body>
+</html>
